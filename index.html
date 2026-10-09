@@ -47,6 +47,35 @@ footer{padding:35px 7%;text-align:center;color:var(--muted);font:14px Arial,sans
   position:relative;
   z-index:1;
 }
+
+/* Cinematic floating petals */
+.petal {
+  position: fixed;
+  top: -30px;
+  left: 0;
+  width: 10px;
+  height: 14px;
+  background: #ff9fbd;
+  border-radius: 80% 0 80% 0;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 15;
+  animation: petalFall linear forwards;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, -20px, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(80px, 105vh, 0) rotate(540deg);
+    opacity: 0;
+  }
+}
  /* Floating anime characters */
 .mini-character{
   position:fixed;
