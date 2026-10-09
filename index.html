@@ -62,6 +62,30 @@ footer{padding:35px 7%;text-align:center;color:var(--muted);font:14px Arial,sans
   0%,100%{translate:0 0}
   50%{translate:0 -10px}
 }
+ /* Mini Akio and Divine escaping from the cover */
+.cover-escape {
+  position: relative;
+  height: 0;
+  z-index: 30;
+  perspective: 1000px;
+}
+
+.escape-character {
+  position: absolute;
+  width: 76px;
+  height: auto;
+  top: -90px;
+  z-index: 30;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 12px rgba(60,20,40,.25));
+  transform-origin: center bottom;
+  animation: escapeFloat 3s ease-in-out infinite;
+}
+
+@keyframes escapeFloat {
+  0%, 100% { transform: translateY(0) rotate(-4deg) scale(1); }
+  50% { transform: translateY(-14px) rotate(4deg) scale(1.05); }
+}
 </style>
 </head>
 <body>
@@ -71,6 +95,7 @@ footer{padding:35px 7%;text-align:center;color:var(--muted);font:14px Arial,sans
 <div class="hero-inner">
 <div class="cover-stage"><img class="cover" src="cover.jpg" alt="You're My Seven Minutes book cover by Akash Chunara and Divya Sharma">
 </div>
+ <div class="cover-escape"><img src="mini-version.png" alt="Mini Akio and Divine" class="escape-character"></div>
 <div class="kicker">A story about moments that stay</div>
 <h1>You're My<br>Seven Minutes</h1>
 <p class="subtitle">An emotional romantic story about love, memories, fleeting moments and the connections that can change everything.</p>
@@ -134,5 +159,7 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.
 document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
 </script>
  <script async src="https://www.instagram.com/embed.js"></script>
-<img src="mini-version.png" alt="Mini Akio and Divine" class="mini-character" style="bottom:20px;left:20px;">
+<div class="cover-escape">
+  <img src="mini-version.png" alt="Mini Akio and Divine" class="escape-character">
+</div>
 </body></html>
