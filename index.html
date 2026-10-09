@@ -166,4 +166,17 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.
 document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
 </script>
  <script async src="https://www.instagram.com/embed.js"></script>
+ 
+<script>
+const miniChars = document.querySelector('.escape-character');
+
+window.addEventListener('scroll', () => {
+  if (!miniChars) return;
+
+  const scrollY = window.scrollY;
+  miniChars.style.marginLeft = Math.sin(scrollY / 180) * 35 + 'px';
+  miniChars.style.marginTop = Math.min(scrollY * 0.08, 80) + 'px';
+});
+</script>
+ 
 </body></html>
