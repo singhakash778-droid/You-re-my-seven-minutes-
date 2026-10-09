@@ -19,6 +19,21 @@ body {
     linear-gradient(180deg, #fff7f8 0%, #fff0f4 50%, #fff8f3 100%);
   background-attachment: fixed;
 }
+  
+/* Soft cinematic lighting */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    rgba(255, 190, 210, 0.10),
+    transparent 65%
+  );
+}
+  
  :root{--ink:#241b20;--muted:#76666d;--rose:#e86b8c;--rose2:#ffb1c4;--cream:#fff8f7;--paper:#fff;--line:#ead9de}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:var(--cream);line-height:1.65}
 nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 6%;background:rgba(255,248,247,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(234,217,222,.7)}
