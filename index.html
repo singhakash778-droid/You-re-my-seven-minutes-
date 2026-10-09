@@ -318,41 +318,41 @@ body::after {
 
 <div id="seven-thread"></div>
 <div id="seven-timer">07:00</div>
-
 <script>
 (() => {
   const timer = document.getElementById('seven-timer');
   const thread = document.getElementById('seven-thread');
-  const duration = 7 * 60;
+  const total = 7 * 60;
   const start = Date.now();
 
   function update() {
-    const remaining = Math.max(
-      0, duration - Math.floor((Date.now() - start) / 1000)
-    );
+    const elapsed = Math.floor((Date.now() - start) / 1000);
+    const remaining = Math.max(0, total - elapsed);
+    const scene = Math.min(7, Math.floor(elapsed / 60) + 1);
     const mins = Math.floor(remaining / 60);
     const secs = remaining % 60;
 
-    timer.textContent =
-      String(mins).padStart(2, '0') + ':' +
-      String(secs).padStart(2, '0');
+    timer.textContent = remaining === 0
+      ? 'Your seven minutes are over ✦'
+      : String(mins).padStart(2, '0') + ':' +
+        String(secs).padStart(2, '0');
 
-    const maxScroll =
-      document.documentElement.scrollHeight - innerHeight;
-    const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
+    thread.style.transform =
+      'scaleY(' + Math.min(1, elapsed / total) + ')';
 
-    thread.style.transform = 'scaleY(' + progress + ')';
-    thread.style.opacity = progress > 0 ? '.7' : '.25';
+    thread.style.background =
+      'linear-gradient(to bottom, transparent, #e86b9b, #fff0f5)';
+
+    timer.dataset.scene = scene;
 
     if (remaining === 0) {
-      timer.textContent = 'Your seven minutes remain ✦';
+      clearInterval(clock);
     }
   }
 
   window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
   update();
-  setInterval(update, 1000);
+  const clock = setInterval(update, 1000);
 })();
 </script>
   
