@@ -275,5 +275,86 @@ body::after {
   to { opacity: 1; }
 }
 </style>
+<style>
+/* Seven-minute mystery thread */
+#seven-thread {
+  position: fixed;
+  top: 0;
+  left: 18px;
+  width: 2px;
+  height: 100vh;
+  z-index: 4;
+  pointer-events: none;
+  opacity: .7;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #e86b9b,
+    #fff0f5,
+    #e86b9b,
+    transparent
+  );
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+#seven-timer {
+  position: fixed;
+  right: 14px;
+  bottom: 22px;
+  z-index: 30;
+  padding: 10px 13px;
+  border: 1px solid rgba(232,107,155,.5);
+  border-radius: 20px;
+  background: rgba(255,248,247,.92);
+  color: #241b20;
+  font: 600 13px Georgia, serif;
+  box-shadow: 0 3px 15px rgba(60,25,38,.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  #seven-thread { transition: none; }
+}
+</style>
+
+<div id="seven-thread"></div>
+<div id="seven-timer">07:00</div>
+
+<script>
+(() => {
+  const timer = document.getElementById('seven-timer');
+  const thread = document.getElementById('seven-thread');
+  const duration = 7 * 60;
+  const start = Date.now();
+
+  function update() {
+    const remaining = Math.max(
+      0, duration - Math.floor((Date.now() - start) / 1000)
+    );
+    const mins = Math.floor(remaining / 60);
+    const secs = remaining % 60;
+
+    timer.textContent =
+      String(mins).padStart(2, '0') + ':' +
+      String(secs).padStart(2, '0');
+
+    const maxScroll =
+      document.documentElement.scrollHeight - innerHeight;
+    const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
+
+    thread.style.transform = 'scaleY(' + progress + ')';
+    thread.style.opacity = progress > 0 ? '.7' : '.25';
+
+    if (remaining === 0) {
+      timer.textContent = 'Your seven minutes remain ✦';
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+  setInterval(update, 1000);
+})();
+</script>
+  
 </body>
 </html>
