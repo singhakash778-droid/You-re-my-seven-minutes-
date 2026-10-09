@@ -11,7 +11,15 @@
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://amzn.in/d/02wttGNh">
 <style>
-:root{--ink:#241b20;--muted:#76666d;--rose:#e86b8c;--rose2:#ffb1c4;--cream:#fff8f7;--paper:#fff;--line:#ead9de}
+/* Cinematic pink and sunset lighting */
+body {
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255, 160, 190, 0.22), transparent 40%),
+    radial-gradient(ellipse at 85% 35%, rgba(255, 190, 120, 0.16), transparent 38%),
+    linear-gradient(180deg, #fff7f8 0%, #fff0f4 50%, #fff8f3 100%);
+  background-attachment: fixed;
+}
+ :root{--ink:#241b20;--muted:#76666d;--rose:#e86b8c;--rose2:#ffb1c4;--cream:#fff8f7;--paper:#fff;--line:#ead9de}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:var(--cream);line-height:1.65}
 nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 6%;background:rgba(255,248,247,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(234,217,222,.7)}
 .brand{font-weight:700;letter-spacing:.04em}.navlinks{display:flex;gap:22px}.navlinks a{color:var(--ink);text-decoration:none;font-size:.9rem}
